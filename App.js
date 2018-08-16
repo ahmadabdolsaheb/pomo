@@ -1,6 +1,6 @@
 import React from 'react';
 //import { StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 //import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
 import FriendProfileScreen from './screens/FriendProfileScreen';
@@ -22,9 +22,12 @@ export default class App extends React.Component {
           settings: SettingsScreen,
           pomodoro: PomodoroScreen,
           Stats: StatScreen,
-          friends: {
+          friendsMain: {
             screen: createBottomTabNavigator({
+              friends: createStackNavigator({
               friendsList: FriendsListScreen,
+              friendProfile: FriendProfileScreen
+            }),
               friendsInvite: FriendsInviteScreen,
               friendsRequest: FriendsRequestScreen
             })
@@ -34,9 +37,7 @@ export default class App extends React.Component {
     });
 
     return (
-
         <MainNavigator />
-
     );
   }
 }
