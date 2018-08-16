@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 //import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
@@ -13,18 +13,9 @@ export default class App extends React.Component {
     });
 
     return (
-      <View style={styles.container}>
+
         <MainNavigator />
-      </View>
+
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
