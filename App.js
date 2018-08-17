@@ -4,9 +4,7 @@ import { createBottomTabNavigator, createStackNavigator } from 'react-navigation
 //import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
 import FriendProfileScreen from './screens/FriendProfileScreen';
-import FriendsInviteScreen from './screens/FriendsInviteScreen';
 import FriendsListScreen from './screens/FriendsListScreen';
-import FriendsRequestScreen from './screens/FriendsRequestScreen';
 import PomodoroScreen from './screens/PomodoroScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import StatScreen from './screens/StatScreen';
@@ -22,14 +20,10 @@ export default class App extends React.Component {
           settings: SettingsScreen,
           pomodoro: PomodoroScreen,
           Stats: StatScreen,
-          friendsMain: {
-            screen: createBottomTabNavigator({
-              friends: createStackNavigator({
+          friends: {
+              screen: createStackNavigator({
               friendsList: FriendsListScreen,
               friendProfile: FriendProfileScreen
-            }),
-              friendsInvite: FriendsInviteScreen,
-              friendsRequest: FriendsRequestScreen
             })
           }
         })

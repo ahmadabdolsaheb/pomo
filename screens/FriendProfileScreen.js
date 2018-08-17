@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 
 class FriendProfileScreen extends Component {
+
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>FriendProfileScreen</Text>
         <Text>FriendProfileScreen</Text>
         <Text>FriendProfileScreen</Text>
@@ -16,5 +17,13 @@ class FriendProfileScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    height: Dimensions.get('window').height
+
+  }
+});
 
 export default FriendProfileScreen;
