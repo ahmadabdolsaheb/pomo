@@ -13,6 +13,7 @@ class Slides extends Component {
           title='Sign In With Facebook'
           button
           type='facebook'
+          onPress={this.props.onComplete}
         />
       );
     }

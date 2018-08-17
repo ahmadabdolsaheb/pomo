@@ -1,6 +1,8 @@
 import React from 'react';
 //import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import store from './store';
 //import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
 import FriendProfileScreen from './screens/FriendProfileScreen';
@@ -31,7 +33,9 @@ export default class App extends React.Component {
     });
 
     return (
+      <Provider store={store}>
         <MainNavigator />
+      </Provider>
     );
   }
 }
