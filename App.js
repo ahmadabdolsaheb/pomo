@@ -30,6 +30,13 @@ export default class App extends React.Component {
           }
         })
       }
+    }, {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+
+      //lazy load to avoid rendering facebook auth on start screen
+      lazy: true
     });
 
     return (
