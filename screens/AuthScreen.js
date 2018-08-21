@@ -6,10 +6,21 @@ import * as actions from '../actions';
 class AuthScreen extends Component {
   componentDidMount() {
     this.props.facebookLogin();
-
+    this.onAuthComplete(this.props);
     //deletes the token
-    AsyncStorage.removeItem('fb_token');
+    //AsyncStorage.removeItem('fb_token');
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('pomodoro');
+    }
+  }
+
   render() {
     return (
       <View>
@@ -25,4 +36,8 @@ class AuthScreen extends Component {
   }
 }
 
-export default connect(null, actions)(AuthScreen);
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, actions)(AuthScreen);
