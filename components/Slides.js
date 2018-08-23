@@ -21,7 +21,6 @@ class Slides extends Component {
 
   renderSlides() {
     return this.props.data.map((slide, index) => {
-        console.log(slide.text);
          return (
          <View
          style={[styles.slideStyle, { backgroundColor: slide.textColor }]}
@@ -35,7 +34,6 @@ class Slides extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     return (
       <ScrollView
         horizontal

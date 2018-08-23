@@ -10,9 +10,11 @@ class WelcomeScreen extends Component {
   state = { token: null }
 
   async componentWillMount() {
+    console.log('here');
     let token = await AsyncStorage.getItem('fb_token');
     if (token) {
-      this.props.navigation.navigate('map');
+      console.log('there');
+      this.props.navigation.navigate('pomodoro');
       this.setState({ token });
     } else {
       this.setState({ token: false });
@@ -26,7 +28,6 @@ class WelcomeScreen extends Component {
     if (_.isNull(this.state.token)) {
       return <AppLoading />;
     }
-    console.log(this.state.token);
     return (
       <Slides data={SLIDES_DATA.data} onComplete={this.onSlideComplete} />
     );
