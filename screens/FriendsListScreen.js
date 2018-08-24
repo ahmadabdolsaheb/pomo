@@ -5,18 +5,23 @@ import {
   Button,
   SegmentedControlIOS,
   StyleSheet,
-  Dimensions } from 'react-native';
+  Dimensions,
+ } from 'react-native';
+ import { Icon } from 'react-native-elements';
 
 class FriendsListScreen extends Component {
   static navigationOptions = {
     title: 'Friends',
-    header: null
+    tabBarIcon: ({ tintColor }) => <Icon
+              name="ios-stats"
+              size={30}
+              type="ionicon"
+              color={tintColor}
+    />
   }
+  
+  state = { selectedIndex: 0 };
 
-  constructor(props) {
-    super(props);
-    this.state = { selectedIndex: 0 };
-  }
   render() {
     return (
       <View style={styles.container}>

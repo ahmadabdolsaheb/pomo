@@ -28,6 +28,7 @@ class WelcomeScreen extends Component {
     if (_.isNull(this.state.token)) {
       return <AppLoading />;
     }
+
     return (
       <Slides data={SLIDES_DATA.data} onComplete={this.onSlideComplete} />
     );
