@@ -28,14 +28,17 @@ export default class App extends React.Component {
               friendProfile: FriendProfileScreen
             })
           }
+        }, {
+          tabBarPosition: 'bottom',
+          tabBarOptions: {
+            labelStyle: { fontSize: 12 }
+          }
         })
       }
     }, {
       navigationOptions: {
         tabBarVisible: false
       },
-
-      //lazy load to avoid rendering facebook auth on start screen
       lazy: true
     });
 
