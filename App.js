@@ -1,11 +1,10 @@
 import React from 'react';
-//import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import store from './store';
 //import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
-import FriendProfileScreen from './screens/FriendProfileScreen';
+//import FriendProfileScreen from './screens/FriendProfileScreen';
 import FriendsListScreen from './screens/FriendsListScreen';
 import PomodoroScreen from './screens/PomodoroScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -19,15 +18,10 @@ export default class App extends React.Component {
       auth: { screen: AuthScreen },
       main: {
         screen: createBottomTabNavigator({
-          settings: SettingsScreen,
-          pomodoro: PomodoroScreen,
-          Stats: StatScreen,
-          friends: {
-              screen: createStackNavigator({
-              friendsList: FriendsListScreen,
-              friendProfile: FriendProfileScreen
-            })
-          }
+          settings: { screen: SettingsScreen },
+          pomodoro: { screen: PomodoroScreen },
+          Stats: { screen: StatScreen },
+          friends: FriendsListScreen
         }, {
           tabBarPosition: 'bottom',
           tabBarOptions: {
