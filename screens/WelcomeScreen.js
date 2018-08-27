@@ -10,10 +10,8 @@ class WelcomeScreen extends Component {
   state = { token: null }
 
   async componentWillMount() {
-    console.log('here');
     let token = await AsyncStorage.getItem('fb_token');
     if (token) {
-      console.log('there');
       this.props.navigation.navigate('pomodoro');
       this.setState({ token });
     } else {

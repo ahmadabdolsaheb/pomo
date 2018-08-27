@@ -7,18 +7,11 @@ import {
   StyleSheet,
   Dimensions,
  } from 'react-native';
-import { Icon } from 'react-native-elements';
 
 class FriendsListScreen extends Component {
   static navigationOptions = {
     title: 'Friends',
     header: null,
-    tabBarIcon: ({ tintColor }) => <Icon
-              name="users"
-              size={30}
-              type="entypo"
-              color={tintColor}
-    />
   }
 
   state = { selectedIndex: 0 };
