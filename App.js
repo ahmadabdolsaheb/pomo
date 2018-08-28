@@ -2,8 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { Icon } from 'react-native-elements';
+import firebase from 'firebase';
 import store from './store';
-//import keys from './keys';
+import keys from './keys';
 import AuthScreen from './screens/AuthScreen';
 import FriendProfileScreen from './screens/FriendProfileScreen';
 import FriendsListScreen from './screens/FriendsListScreen';
@@ -13,7 +14,19 @@ import StatScreen from './screens/StatScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 
 export default class App extends React.Component {
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: keys.apiKey,
+      authDomain: keys.authDomain,
+      databaseURL: keys.databaseURL,
+      projectId: keys.projectId,
+      storageBucket: keys.storageBucket,
+      messagingSenderId: keys.messagingSenderId
+    });
+  }
+
   render() {
+    console.log(keys.apiKey);
     const FriendsNavigator = createStackNavigator({
       friendsList: { screen: FriendsListScreen },
       friendProfile: { screen: FriendProfileScreen }
@@ -52,7 +65,6 @@ export default class App extends React.Component {
       },
       lazy: true
     });
-
 
     return (
       <Provider store={store}>
