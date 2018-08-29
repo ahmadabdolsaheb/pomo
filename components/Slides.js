@@ -20,8 +20,7 @@ class Slides extends Component {
   }
 
   renderSlides() {
-    return this.props.data.map((slide, index) => {
-         return (
+    return this.props.data.map((slide, index) => 
          <View
          style={[styles.slideStyle, { backgroundColor: slide.textColor }]}
          key={slide.title}
@@ -29,8 +28,7 @@ class Slides extends Component {
           <Text style={styles.textStyle}>{slide.title}</Text>
           {this.renderLastSlide(index)}
         </View>
-      );
-    });
+    );
   }
 
   render() {
