@@ -29,7 +29,7 @@ export default class App extends React.Component {
       storageBucket: keys.storageBucket,
       messagingSenderId: keys.messagingSenderId
     });
-    AsyncStorage.removeItem('fb_token');
+    //AsyncStorage.removeItem('fb_token');
     // setting the token
     const token = await AsyncStorage.getItem('fb_token');
     if (token) this.setState({ token });
@@ -37,7 +37,6 @@ export default class App extends React.Component {
   }
 
   render() {
-
     const FriendsNavigator = createStackNavigator({
       friendsList: { screen: FriendsListScreen },
       friendProfile: { screen: FriendProfileScreen }
@@ -56,8 +55,7 @@ export default class App extends React.Component {
 
     let MainNavigator = null;
 
-    if (this.state.token) {
-      MainNavigator = createBottomTabNavigator({
+    const AuthoizedNav = createBottomTabNavigator({
         settings: { screen: SettingsScreen },
         pomodoro: { screen: PomodoroScreen },
         Stats: { screen: StatScreen },
@@ -68,37 +66,29 @@ export default class App extends React.Component {
         tabBarOptions: {
           labelStyle: { fontSize: 12 }
         }
-      });
-    } else if (this.state.token === false) {
-      MainNavigator = createBottomTabNavigator({
+    });
+
+    const UnauthorizedNav = createBottomTabNavigator({
         welcome: { screen: WelcomeScreen },
         auth: { screen: AuthScreen },
         main: {
-          screen: createBottomTabNavigator({
-            settings: { screen: SettingsScreen },
-            pomodoro: { screen: PomodoroScreen },
-            Stats: { screen: StatScreen },
-            friends: { screen: FriendsNavigator }
-          }, {
-            initialRouteName: 'pomodoro',
-            tabBarPosition: 'bottom',
-            tabBarOptions: {
-              labelStyle: { fontSize: 12 }
-            }
-          })
+          screen: AuthoizedNav
         }
       }, {
         navigationOptions: {
           tabBarVisible: false
         },
         lazy: true
-      });
-    }
+    });
 
+    if (this.state.token) MainNavigator = AuthoizedNav;
+
+    else if (this.state.token === false) MainNavigator = UnauthorizedNav;
+
+    // main component rendering logic
     if (_.isNull(this.state.token)) {
       return <AppLoading />;
-    }
-
+    } 
     return (
       <Provider store={store}>
         <MainNavigator />

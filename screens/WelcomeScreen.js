@@ -8,18 +8,6 @@ import SLIDES_DATA from '../data/welcomeData';
 
 class WelcomeScreen extends Component {
   state = { token: null }
-
-  // async componentWillMount() {
-  //
-  //   let token = await AsyncStorage.getItem('fb_token');
-  //   if (token) {
-  //     this.props.navigation.navigate('pomodoro');
-  //     this.setState({ token });
-  //   } else {
-  //     this.setState({ token: false });
-  //   }
-  //   this.setState({ token });
-  // }
   onSlideComplete = () => {
     this.props.navigation.navigate('auth');
   }
