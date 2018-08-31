@@ -31,8 +31,10 @@ const doFacebookLogin = async dispatch => {
   });
 
   auth.onAuthStateChanged(user => {
-    if (user != null) console.log(`USER: ${user}`);
-    else console.log('No USER');
+    if (user != null) {
+      const USER = JSON.stringify(user);
+      console.log(`USER: ${USER}`);
+    } else console.log('No USER');
   });
   await AsyncStorage.setItem('fb_token', token);
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
