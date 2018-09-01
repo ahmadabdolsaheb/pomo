@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -19,14 +19,26 @@ class Slides extends Component {
     }
   }
 
+  // stringify = (location, id, format) => `${location}${id}${format}`
+
+
   renderSlides() {
-    return this.props.data.map((slide, index) => 
+    return this.props.data.map((slide, index) =>
          <View
-         style={[styles.slideStyle, { backgroundColor: slide.textColor }]}
-         key={slide.title}
+           style={[styles.slideStyle, { backgroundColor: slide.textColor }]}
+           key={slide.title}
          >
-          <Text style={styles.textStyle}>{slide.title}</Text>
-          {this.renderLastSlide(index)}
+         <View style={styles.imageView}>
+         <Image
+             style={{ width: 300, height: 300 }}
+              source={ require('../assets/1.png') }
+         />
+         //../assets/+${index + 1}.png
+         </View>
+         <View style={styles.textView}>
+            <Text style={styles.textStyle}>{slide.title}</Text>
+            {this.renderLastSlide(index)}
+          </View>
         </View>
     );
   }
@@ -48,9 +60,19 @@ const styles = {
   slideStyle: {
     width: SCREEN_WIDTH,
     flex: 1,
+    // backgroundColor: 'white',
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  imageView: {
+    flex: 4,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textView: {
+    flex: 3,
+    backgroundColor: 'pink',
   },
   textStyle: {
     fontSize: 30
