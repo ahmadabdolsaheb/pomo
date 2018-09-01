@@ -72,7 +72,8 @@ const styles = {
   },
   textView: {
     flex: 3,
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
+    alignItems: 'center'
   },
   textStyle: {
     fontSize: 30
