@@ -1,10 +1,6 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
-import { AppLoading } from 'expo';
 import Slides from '../components/Slides';
 import SLIDES_DATA from '../data/welcomeData';
-
 
 class WelcomeScreen extends Component {
   state = { token: null }
@@ -13,7 +9,7 @@ class WelcomeScreen extends Component {
   }
   render() {
     return (
-      <Slides data={SLIDES_DATA.data} onComplete={this.onSlideComplete} />
+      <Slides data={SLIDES_DATA} onComplete={this.onSlideComplete} />
     );
   }
 }

@@ -31,7 +31,7 @@ class Slides extends Component {
          <View style={styles.imageView}>
          <Image
              style={{ width: 300, height: 300 }}
-              source={ require('../assets/1.png') }
+              source={slide.uri}
          />
          //../assets/+${index + 1}.png
          </View>
