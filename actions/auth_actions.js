@@ -34,6 +34,8 @@ const doFacebookLogin = async dispatch => {
     if (user != null) {
       const USER = JSON.stringify(user);
       console.log(`USER: ${USER}`);
+      const { currentUser } = firebase.auth();
+      console.log(`currentUser: ${currentUser.uid}`);
     } else console.log('No USER');
   });
   await AsyncStorage.setItem('fb_token', token);
