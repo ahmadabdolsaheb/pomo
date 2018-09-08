@@ -26,6 +26,7 @@ const doFacebookLogin = async dispatch => {
     return dispatch({ type: FACEBOOK_LOGIN_FAIL });
   }
 
+
   const auth = firebase.auth();
   const credential = await firebase.auth.FacebookAuthProvider.credential(token);
   auth.signInAndRetrieveDataWithCredential(credential).catch(error => {
@@ -33,10 +34,13 @@ const doFacebookLogin = async dispatch => {
   });
 
   const { currentUser } = firebase.auth();
+
+  console.log("currentUser"+JSON.stringify(currentUser));
+
   var db = firebase.firestore();
 
   // Disable deprecated features
-  db.settings({timestampsInSnapshots: true});
+  db.settings({ timestampsInSnapshots: true });
 
   var docRef = db.collection("users").doc(currentUser.uid);
 
@@ -47,6 +51,14 @@ const doFacebookLogin = async dispatch => {
           // doc.data() will be undefined in this case
           console.log("No such document!");
           console.log("setting data");
+          docRef.set({
+              name: currentUser.displayName,
+              email: currentUser.email,
+              photo: currentUser.photoURL,
+              labTime: 25,
+              breakTime: 5,
+              labsInRound: 5,
+              longBreakTime: 25 });
       }
   }).catch(function(error) {
       console.log("Error getting document:", error);
