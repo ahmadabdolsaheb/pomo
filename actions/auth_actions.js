@@ -1,11 +1,13 @@
 import { Facebook } from 'expo';
 import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
+import 'firebase/firestore';
 import {
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL
  } from './types';
 import KEYS from '../keys.json';
+
 
 export const facebookLogin = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
@@ -30,14 +32,26 @@ const doFacebookLogin = async dispatch => {
     console.log(`ERROR ${error.message}`);
   });
 
-  auth.onAuthStateChanged(user => {
-    if (user != null) {
-      const USER = JSON.stringify(user);
-      console.log(`USER: ${USER}`);
-      const { currentUser } = firebase.auth();
-      console.log(`currentUser: ${currentUser.uid}`);
-    } else console.log('No USER');
+  const { currentUser } = firebase.auth();
+  var db = firebase.firestore();
+
+  // Disable deprecated features
+  db.settings({timestampsInSnapshots: true});
+
+  var docRef = db.collection("users").doc(currentUser.uid);
+
+  docRef.get().then(function(doc) {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          console.log("setting data");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
   });
+
   await AsyncStorage.setItem('fb_token', token);
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };
