@@ -26,7 +26,6 @@ const doFacebookLogin = async dispatch => {
     return dispatch({ type: FACEBOOK_LOGIN_FAIL });
   }
 
-
   const auth = firebase.auth();
   const credential = await firebase.auth.FacebookAuthProvider.credential(token);
   auth.signInAndRetrieveDataWithCredential(credential).catch(error => {
