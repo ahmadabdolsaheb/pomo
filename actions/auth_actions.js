@@ -4,7 +4,8 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import {
   FACEBOOK_LOGIN_SUCCESS,
-  FACEBOOK_LOGIN_FAIL
+  FACEBOOK_LOGIN_FAIL,
+  LOAD_ALL_USER_DATA
  } from './types';
 import KEYS from '../keys.json';
 
@@ -43,26 +44,28 @@ const doFacebookLogin = async dispatch => {
 
   var docRef = db.collection("users").doc(currentUser.uid);
 
-  docRef.get().then(function(doc) {
+  const userData = await docRef.get().then(doc => {
       if (doc.exists) {
-          console.log("Document data:", doc.data());
+          console.log("Found data:", doc.data());
+          return doc.data();
       } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-          console.log("setting data");
-          docRef.set({
+          console.log("set data");
+          const defaultData = {
               name: currentUser.displayName,
               email: currentUser.email,
               photo: currentUser.photoURL,
               labTime: 25,
               breakTime: 5,
               labsInRound: 5,
-              longBreakTime: 25 });
+              longBreakTime: 25 };
+          docRef.set(defaultData);
+          return defaultData;
       }
-  }).catch(function(error) {
-      console.log("Error getting document:", error);
-  });
+  }).catch(error => console.log('Error getting document:', error));
 
+  console.log("USERERE" + JSON.stringify(userData));
   await AsyncStorage.setItem('fb_token', token);
+
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
+  dispatch({ type: LOAD_ALL_USER_DATA, payload: userData });
 };
