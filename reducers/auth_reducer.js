@@ -4,6 +4,7 @@ import {
 } from '../actions/types';
 
 export default function (state = {}, action) {
+  console.log('payload'+action.payload);
   switch (action.type) {
     case FACEBOOK_LOGIN_SUCCESS:
       return { token: action.payload };

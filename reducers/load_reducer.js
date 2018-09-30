@@ -3,10 +3,10 @@ import {
 } from '../actions/types';
 
 export default function (state = {}, action) {
-  console.log(action.type);
+  console.log('payload'+ action.payload);
   switch (action.type) {
     case LOAD_ALL_USER_DATA:
-      return { user: action.payload };
+      return { userInfo: action.payload };
     default:
       return state;
   }

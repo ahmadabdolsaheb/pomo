@@ -29,7 +29,7 @@ export default class App extends React.Component {
       storageBucket: keys.storageBucket,
       messagingSenderId: keys.messagingSenderId
     });
-    AsyncStorage.removeItem('fb_token');
+    //AsyncStorage.removeItem('fb_token');
     // setting the token
     const token = await AsyncStorage.getItem('fb_token');
     if (token) this.setState({ token });

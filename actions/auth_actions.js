@@ -67,5 +67,5 @@ const doFacebookLogin = async dispatch => {
   await AsyncStorage.setItem('fb_token', token);
 
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
-  dispatch({ type: LOAD_ALL_USER_DATA, payload: userData });
+  dispatch({ type: LOAD_ALL_USER_DATA, payload: JSON.stringify(userData) });
 };
