@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+ } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class PomodoroScreen extends Component {
@@ -15,16 +20,19 @@ class PomodoroScreen extends Component {
   render() {
     return (
       <View>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
-        <Text>PomodoroScreen</Text>
+        <View style={styles.circle} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  circle: {
+      width: 100,
+      height: Dimensions.get('window').height * 0.3,
+      borderRadius: 100 / 2,
+      backgroundColor: 'red'
+  }
+});
 
 export default PomodoroScreen;
