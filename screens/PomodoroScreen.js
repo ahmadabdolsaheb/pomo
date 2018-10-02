@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ART } from 'react-native';
+import { View, ART, Text, StyleSheet, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
 import * as d3 from 'd3';
 
@@ -22,38 +22,52 @@ class PomodoroScreen extends Component {
       {
         itemName: 'Mountain Dew',
         price: 100,
-        color: '#FFFFFF'
+        color: '#007aff'
+
       },
       {
         itemName: 'Shoes',
-        price: 90,
-        color: 'rgb(122,0,122)'
+        price: 10,
+        color: '#FFFFFF'
       }
     ];
-    const width = 250;
-    const height = 250;
+    const smallerDimention = Dimensions.get('window').height < Dimensions.get('window').width
+      ? Dimensions.get('window').height :
+      Dimensions.get('window').width;
+    const dimention = smallerDimention * 0.9;
     const sectionAngles = d3.pie().value(d => d.price)(userPurchases);
     const path = d3.arc()
-    .outerRadius(100) //must be less than 1/2 the chart's height/width
+    .outerRadius((dimention / 2)) //must be less than 1/2 the chart's height/width
     .padAngle(0) //defines the amount of whitespace between sections
-    .innerRadius(95); //the size of the inner 'donut' whitespace
+    .innerRadius((dimention / 2) * 0.96); //the size of the inner 'donut' whitespace
     return (
-    <View>
-      <Surface width={width} height={height}>
-        <Group x={width / 2} y={height / 2}>
-          {sectionAngles.map(section => (
-           <Shape
-             key={section.index}
-             d={path(section)}
-             fill={section.data.color}
-             strokeWidth={1}
-           />
-         ))}
-        </Group>
-      </Surface>
+    <View style={styles.container}>
+        <Surface width={dimention} height={dimention} style={styles.circle}>
+          <Group x={dimention / 2} y={dimention / 2}>
+            {sectionAngles.map(section => (
+             <Shape
+               key={section.index}
+               d={path(section)}
+               fill={section.data.color}
+             />
+           ))}
+          </Group>
+        </Surface>
+
     </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  circle: {
+    backgroundColor: 'pink'
+  },
+});
 
 export default PomodoroScreen;
