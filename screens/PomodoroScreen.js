@@ -3,6 +3,7 @@ import { View, ART, Text, StyleSheet, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
 import * as d3 from 'd3';
 
+
 const { Surface, Group, Shape } = ART;
 const smallerDimention = Dimensions.get('window').height < Dimensions.get('window').width
   ? Dimensions.get('window').height :
@@ -57,8 +58,26 @@ class PomodoroScreen extends Component {
         </Surface>
         <View style={styles.timerContainer}>
           <Text style={styles.timer}>
-           88:83
+           24:00
           </Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Icon
+            reverse
+            name="controller-stop"
+            type="entypo"
+            reverseColor='#333333'
+            color='#F0F0F0'
+            onPress={() => console.log('scape')}
+          />
+          <Icon
+            reverse
+            name="controller-play"
+            type="entypo"
+            reverseColor='#333333'
+            color='#F0F0F0'
+            onPress={() => console.log('scape')}
+          />
         </View>
       </View>
     </View>
@@ -72,13 +91,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  circle: {
-
-  },
   items: {
     width: dimention,
     height: dimention,
-
   },
   timerContainer: {
     position: 'absolute',
@@ -90,8 +105,12 @@ const styles = StyleSheet.create({
   timer: {
     fontSize: 50,
     color: '#333333'
+  },
+  buttonsContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row'
   }
-
 });
 
 export default PomodoroScreen;
