@@ -8,6 +8,27 @@ import {
   Dimensions,
  } from 'react-native';
 
+ import { Card, ListItem, Icon, List } from 'react-native-elements';
+
+ const users = [
+  {
+     name: 'brynn',
+     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  },
+  {
+     name: 'brynn',
+     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  },
+  {
+     name: 'brynn',
+     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  },
+  {
+     name: 'brynn',
+     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+  }
+ ];
+
 class FriendsListScreen extends Component {
   static navigationOptions = {
     title: 'Friends',
@@ -19,36 +40,52 @@ class FriendsListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>FriendsListScreen</Text>
-        <Text>FriendsListScreen</Text>
+      <View style={styles.controlsContainer}>
         <SegmentedControlIOS
+          style={styles.SegmentedControlIOS}
           values={['Friends', 'Invite', 'Requests']}
           selectedIndex={this.state.selectedIndex}
           onChange={(event) => {
             this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
           }}
         />
+
+        </View>
         {this.state.selectedIndex === 0 ?
-          (<Button
-            backgroundColor="rgba(0,0,0,0)"
-            color="rgba(0, 122, 255, 1)"
-            title="Profile"
-            onPress={() => this.props.navigation.navigate('friendProfile')}
-          />) : ('')}
-          <Text>FriendsListScreen</Text>
-          <Text>FriendsListScreen</Text>
+          (<List containerStyle={{ marginBottom: 20 }}>
+                 {
+                   users.map((u, i) =>
+
+                       <ListItem
+                         key={i}
+                         roundAvatar
+                         title={u.name}
+                         avatar={{ uri: u.avatar }}
+                         onPress={() => this.props.navigation.navigate('friendProfile')}
+                       />
+                   )
+                 }
+               </List>) : ('')}
       </View>
 
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    backgroundColor: 'white',
-    height: Dimensions.get('window').height
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  controlsContainer: {
+    marginTop: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  SegmentedControlIOS: {
 
+    width: Dimensions.get('window').width * 0.9
   }
-});
+};
 
 export default FriendsListScreen;

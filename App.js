@@ -61,7 +61,7 @@ export default class App extends React.Component {
         Stats: { screen: StatScreen },
         friends: { screen: FriendsNavigator }
       }, {
-        initialRouteName: 'pomodoro',
+        initialRouteName: 'settings',
         tabBarPosition: 'bottom',
         tabBarOptions: {
           labelStyle: { fontSize: 12 }

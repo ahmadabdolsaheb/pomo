@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { View, Text, Image } from 'react-native'
+import { Card, ListItem, Button, Icon, List, Slider } from 'react-native-elements'
+
+const users = [
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ },
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ },
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ },
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ }
+];
+// implemented without image with header
+
 
 class SettingsScreen extends Component {
   static navigationOptions = {
@@ -12,19 +33,22 @@ class SettingsScreen extends Component {
               color={tintColor}
     />
   }
+  state = { value: 0 };
   render() {
     return (
-      <View>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
+      <View styles={styles.container}>
+
+
       </View>
     );
   }
 }
+
+const styles = {
+  container: {
+    flex: 1,
+    marginTop: 60
+  }
+};
 
 export default SettingsScreen;
