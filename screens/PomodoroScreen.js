@@ -41,7 +41,7 @@ class PomodoroScreen extends Component {
     const path = d3.arc()
     .outerRadius((dimention / 2)) //must be less than 1/2 the chart's height/width
     .padAngle(0) //defines the amount of whitespace between sections
-    .innerRadius((dimention / 2) * 0.96); //the size of the inner 'donut' whitespace
+    .innerRadius((dimention / 2) * 0.97); //the size of the inner 'donut' whitespace
     return (
     <View style={styles.container}>
       <View style={styles.items}>
@@ -85,7 +85,7 @@ class PomodoroScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -111,6 +111,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row'
   }
-});
+};
 
 export default PomodoroScreen;

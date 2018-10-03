@@ -8,7 +8,7 @@ import {
   Dimensions,
  } from 'react-native';
 
- import { Card, ListItem, Icon, List } from 'react-native-elements';
+ import { Card, ListItem, Icon, List, Badge } from 'react-native-elements';
 
  const users = [
   {
@@ -58,6 +58,7 @@ class FriendsListScreen extends Component {
 
                        <ListItem
                          key={i}
+                         badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' }}}
                          roundAvatar
                          title={u.name}
                          avatar={{ uri: u.avatar }}
