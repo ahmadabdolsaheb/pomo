@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button,
   SegmentedControlIOS,
   StyleSheet,
   Dimensions,
  } from 'react-native';
 
- import { Card, ListItem, Icon, List, Badge } from 'react-native-elements';
+ import { Card, ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
 
  const users = [
   {
@@ -35,7 +34,7 @@ class FriendsListScreen extends Component {
     header: null,
   }
 
-  state = { selectedIndex: 0 };
+  state = { selectedIndex: 1 };
 
   render() {
     return (
@@ -53,20 +52,65 @@ class FriendsListScreen extends Component {
         </View>
         {this.state.selectedIndex === 0 ?
           (<List containerStyle={{ marginBottom: 20 }}>
-                 {
-                   users.map((u, i) =>
+             {
+               users.map((u, i) =>
 
-                       <ListItem
-                         key={i}
-                         badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' }}}
-                         roundAvatar
-                         title={u.name}
-                         avatar={{ uri: u.avatar }}
-                         onPress={() => this.props.navigation.navigate('friendProfile')}
-                       />
-                   )
-                 }
-               </List>) : ('')}
+                   <ListItem
+                     key={i}
+                     badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' } }}
+                     roundAvatar
+                     title={u.name}
+                     avatar={{ uri: u.avatar }}
+                     onPress={() => this.props.navigation.navigate('friendProfile')}
+                   />
+               )
+             }
+            </List>) : this.state.selectedIndex === 1 ?
+            (
+              <View>
+
+              <SearchBar
+                lightTheme
+                containerStyle={{ backgroundColor: 'white', marginTop: 20 }}
+                inputStyle={{ backgroundColor: 'white' }}
+                onChangeText={console.log('change')}
+                onClearText={console.log('value')}
+                icon={{ type: 'font-awesome', name: 'search' }}
+                placeholder='Search Here...'
+              />
+
+              <Button
+                small
+                containerViewStyle={{ marginTop: 20 }}
+                buttonStyle={{
+                    backgroundColor: '#007aff',
+                    height: 45,
+                    borderColor: 'transparent',
+                    borderWidth: 0,
+                    borderRadius: 5
+                  }}
+                icon={{ name: 'mail' }}
+                title='Invite by email'
+                onPress={() => console.log('hello')}
+              />
+
+              <List containerStyle={{ marginBottom: 20 }}>
+
+               {
+                 users.map((u, i) =>
+
+                     <ListItem
+                       key={i}
+                       badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' } }}
+                       roundAvatar
+                       title={u.name}
+                       avatar={{ uri: u.avatar }}
+                       onPress={() => this.props.navigation.navigate('friendProfile')}
+                     />
+                 )
+               }
+              </List></View>)
+             : ('')}
       </View>
 
     );
