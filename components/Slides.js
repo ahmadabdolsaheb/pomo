@@ -33,7 +33,6 @@ class Slides extends Component {
              style={{ width: 300, height: 300 }}
               source={slide.uri}
          />
-         //../assets/+${index + 1}.png
          </View>
          <View style={styles.textView}>
             <Text style={styles.textStyle}>{slide.title}</Text>
@@ -60,9 +59,6 @@ const styles = {
   slideStyle: {
     width: SCREEN_WIDTH,
     flex: 1,
-    // backgroundColor: 'white',
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   imageView: {
     flex: 4,

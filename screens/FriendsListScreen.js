@@ -3,11 +3,11 @@ import {
   View,
   Text,
   SegmentedControlIOS,
-  StyleSheet,
   Dimensions,
  } from 'react-native';
 
- import { Card, ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
+ import { ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
+ import FriendsList from '../components/FriendsList';
 
  const users = [
   {
@@ -51,21 +51,7 @@ class FriendsListScreen extends Component {
 
         </View>
         {this.state.selectedIndex === 0 ?
-          (<List containerStyle={{ marginBottom: 20 }}>
-             {
-               users.map((u, i) =>
-
-                   <ListItem
-                     key={i}
-                     badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' } }}
-                     roundAvatar
-                     title={u.name}
-                     avatar={{ uri: u.avatar }}
-                     onPress={() => this.props.navigation.navigate('friendProfile')}
-                   />
-               )
-             }
-            </List>) : this.state.selectedIndex === 1 ?
+          (<FriendsList friends={users} />) : this.state.selectedIndex === 1 ?
             (
               <View>
 
@@ -76,7 +62,7 @@ class FriendsListScreen extends Component {
                 onChangeText={console.log('change')}
                 onClearText={console.log('value')}
                 icon={{ type: 'font-awesome', name: 'search' }}
-                placeholder='Search Here...'
+                placeholder='Search by user ID'
               />
 
               <Button
@@ -100,6 +86,7 @@ class FriendsListScreen extends Component {
                  users.map((u, i) =>
 
                      <ListItem
+                       hideChevron
                        key={i}
                        badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' } }}
                        roundAvatar
