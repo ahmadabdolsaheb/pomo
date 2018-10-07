@@ -8,7 +8,7 @@ import {
 
  import { ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
  import FriendsList from '../components/FriendsList';
-
+import FriendsInviteList from '../components/FriendsInviteList';
  const users = [
   {
      name: 'brynn',
@@ -39,64 +39,19 @@ class FriendsListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.controlsContainer}>
-        <SegmentedControlIOS
-          style={styles.SegmentedControlIOS}
-          values={['Friends', 'Invite', 'Requests']}
-          selectedIndex={this.state.selectedIndex}
-          onChange={(event) => {
-            this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
-          }}
-        />
-
+        <View style={styles.controlsContainer}>
+          <SegmentedControlIOS
+            style={styles.SegmentedControlIOS}
+            values={['Friends', 'Invite', 'Requests']}
+            selectedIndex={this.state.selectedIndex}
+            onChange={(event) => {
+              this.setState({ selectedIndex: event.nativeEvent.selectedSegmentIndex });
+            }}
+          />
         </View>
         {this.state.selectedIndex === 0 ?
           (<FriendsList friends={users} />) : this.state.selectedIndex === 1 ?
-            (
-              <View>
-
-              <SearchBar
-                lightTheme
-                containerStyle={{ backgroundColor: 'white', marginTop: 20 }}
-                inputStyle={{ backgroundColor: 'white' }}
-                onChangeText={console.log('change')}
-                onClearText={console.log('value')}
-                icon={{ type: 'font-awesome', name: 'search' }}
-                placeholder='Search by user ID'
-              />
-
-              <Button
-                small
-                containerViewStyle={{ marginTop: 20 }}
-                buttonStyle={{
-                    backgroundColor: '#007aff',
-                    height: 45,
-                    borderColor: 'transparent',
-                    borderWidth: 0,
-                    borderRadius: 5
-                  }}
-                icon={{ name: 'mail' }}
-                title='Invite by email'
-                onPress={() => console.log('hello')}
-              />
-
-              <List containerStyle={{ marginBottom: 20 }}>
-
-               {
-                 users.map((u, i) =>
-
-                     <ListItem
-                       hideChevron
-                       key={i}
-                       badge={{ value: 234521, containerStyle: { backgroundColor: '#007aff' } }}
-                       roundAvatar
-                       title={u.name}
-                       avatar={{ uri: u.avatar }}
-                       onPress={() => this.props.navigation.navigate('friendProfile')}
-                     />
-                 )
-               }
-              </List></View>)
+          (<FriendsInviteList friends={users} />)
              : ('')}
       </View>
 
