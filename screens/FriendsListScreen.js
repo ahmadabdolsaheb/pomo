@@ -36,6 +36,19 @@ class FriendsListScreen extends Component {
 
   state = { selectedIndex: 1 };
 
+  viewTab(state, list) {
+    switch (state) {
+      case 0:
+        return <FriendsList friends={list} />;
+      case 1:
+        return <FriendsInviteList friends={list} />;
+      case 2:
+        return '';
+      default:
+        return '';
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -49,12 +62,8 @@ class FriendsListScreen extends Component {
             }}
           />
         </View>
-        {this.state.selectedIndex === 0 ?
-          (<FriendsList friends={users} />) : this.state.selectedIndex === 1 ?
-          (<FriendsInviteList friends={users} />)
-             : ('')}
+        {this.viewTab(this.state.selectedIndex, users)}
       </View>
-
     );
   }
 }
