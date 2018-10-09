@@ -6,10 +6,12 @@ import {
   Dimensions,
  } from 'react-native';
 
- import { ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
- import FriendsList from '../components/FriendsList';
+import { ListItem, Icon, List, Button, Badge, SearchBar } from 'react-native-elements';
+import FriendsList from '../components/FriendsList';
+import FriendsRequestList from '../components/FriendsRequestList';
 import FriendsInviteList from '../components/FriendsInviteList';
- const users = [
+
+const users = [
   {
      name: 'brynn',
      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
@@ -26,7 +28,7 @@ import FriendsInviteList from '../components/FriendsInviteList';
      name: 'brynn',
      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
   }
- ];
+];
 
 class FriendsListScreen extends Component {
   static navigationOptions = {
@@ -43,7 +45,7 @@ class FriendsListScreen extends Component {
       case 1:
         return <FriendsInviteList friends={list} />;
       case 2:
-        return '';
+        return <FriendsRequestList friends={list} />;
       default:
         return '';
     }
